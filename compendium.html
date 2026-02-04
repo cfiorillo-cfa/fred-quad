@@ -60,3 +60,47 @@
             border-radius: 6px;
             border: 1px solid var(--border);
             transition: all 0.2s;
+        }
+        .btn-full:hover { background: var(--border); color: #fff; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <header>
+        <a href="index.html" class="back-link">← Back to Quad Chart</a>
+        <h1>Data Models: FReD Section 3</h1>
+        <p style="color: var(--text-muted);">A comprehensive visual index of schemas 3.1 through 3.12.</p>
+    </header>
+
+    <div class="grid" id="gallery">
+        </div>
+</div>
+
+<script>
+    const gallery = document.getElementById('gallery');
+
+    // Loop through the 12 sections
+    for (let i = 1; i <= 12; i++) {
+        // Construct the filename exactly as seen in your screenshot
+        const fileName = `FReD Section 3.${i}.svg`;
+
+        const card = document.createElement('div');
+        card.className = 'card';
+        card.innerHTML = `
+            <div class="svg-preview" onclick="window.open('${fileName}', '_blank')" title="Click to open full SVG">
+                <img src="${fileName}" alt="FReD Section 3.${i}" onerror="this.parentElement.style.background='#21262d'; this.src='https://placehold.co/400x300/21262d/8b949e?text=3.${i}+Not+Found'">
+            </div>
+            <div class="card-info">
+                <h3>FReD Section 3.${i}</h3>
+                <div class="actions">
+                    <a href="${fileName}" target="_blank" class="btn-full">Open Full Resolution</a>
+                </div>
+            </div>
+        `;
+        gallery.appendChild(card);
+    }
+</script>
+
+</body>
+</html>
