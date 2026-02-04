@@ -6,108 +6,57 @@
     <title>FReD Section 3: Data Architecture Compendium</title>
     <style>
         :root {
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-muted: #64748b;
-            --accent: #2563eb;
-            --border: #e2e8f0;
+            --bg: #0d1117; /* Darker theme to match your GitHub screenshot */
+            --card-bg: #161b22;
+            --text-main: #c9d1d9;
+            --text-muted: #8b949e;
+            --accent: #58a6ff;
+            --border: #30363d;
         }
 
-        body { font-family: system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding: 40px 20px; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif; background: var(--bg); color: var(--text-main); margin: 0; padding: 40px 20px; }
         .container { max-width: 1200px; margin: 0 auto; }
         
-        header { margin-bottom: 40px; border-bottom: 2px solid var(--border); padding-bottom: 20px; }
-        .back-link { text-decoration: none; color: var(--text-muted); font-weight: 500; margin-bottom: 10px; display: inline-block; }
+        header { margin-bottom: 40px; border-bottom: 1px solid var(--border); padding-bottom: 20px; }
+        .back-link { text-decoration: none; color: var(--text-muted); font-size: 0.9rem; margin-bottom: 10px; display: inline-block; transition: color 0.2s; }
         .back-link:hover { color: var(--accent); }
         
-        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 24px; }
+        .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 20px; }
         
         .card { 
             background: var(--card-bg); 
             border: 1px solid var(--border); 
-            border-radius: 12px; 
+            border-radius: 6px; 
             overflow: hidden; 
-            transition: all 0.2s ease;
+            transition: border-color 0.2s;
             display: flex;
             flex-direction: column;
         }
         
-        .card:hover { transform: translateY(-4px); box-shadow: 0 12px 20px -5px rgba(0,0,0,0.1); }
+        .card:hover { border-color: var(--text-muted); }
         
         .svg-preview { 
-            background: #fff; 
-            height: 250px; 
+            background: #fff; /* Keeping the SVG background white for contrast */
+            height: 220px; 
             display: flex; 
             align-items: center; 
             justify-content: center; 
-            padding: 20px;
+            padding: 10px;
             cursor: zoom-in;
-            border-bottom: 1px solid var(--border);
         }
         
         .svg-preview img { max-width: 100%; max-height: 100%; object-fit: contain; }
         
-        .card-info { padding: 20px; }
-        .card-info h3 { margin: 0 0 12px 0; font-size: 1.1rem; color: var(--text-main); }
+        .card-info { padding: 16px; border-top: 1px solid var(--border); }
+        .card-info h3 { margin: 0 0 12px 0; font-size: 1rem; font-weight: 400; }
         
-        .actions { display: flex; gap: 12px; }
-        .actions a { 
+        .btn-full { 
+            display: inline-block;
             font-size: 0.8rem; 
             text-decoration: none; 
             color: var(--accent); 
             font-weight: 600;
-            padding: 6px 12px;
+            padding: 5px 12px;
             border-radius: 6px;
-            background: #eff6ff;
-            border: 1px solid transparent;
+            border: 1px solid var(--border);
             transition: all 0.2s;
-        }
-        .actions a:hover { background: var(--accent); color: white; }
-    </style>
-</head>
-<body>
-
-<div class="container">
-    <header>
-        <a href="index.html" class="back-link">← Back to Quad Chart</a>
-        <h1>FReD Section 3: Data Models</h1>
-        <p>Comprehensive Entity Relationship Diagrams for Sections 3.1 through 3.12.</p>
-    </header>
-
-    <div class="grid" id="gallery">
-        </div>
-</div>
-
-<script>
-    const gallery = document.getElementById('gallery');
-
-    // Loops 12 times to create sections 3.1 through 3.12
-    for (let i = 1; i <= 12; i++) {
-        const sectionNum = `3.${i}`;
-        
-        // ASSUMPTION: Your files are named 'fred_3_1.svg', 'fred_3_2.svg', etc.
-        // Change this string if your actual filenames are different!
-        const fileName = `fred_3_${i}.svg`;
-        const dbmlName = `fred_3_${i}.dbml`;
-
-        const card = document.createElement('div');
-        card.className = 'card';
-        card.innerHTML = `
-            <div class="svg-preview" onclick="window.open('${fileName}', '_blank')" title="Click to expand">
-                <img src="${fileName}" alt="FReD Section ${sectionNum} Diagram" onerror="this.src='https://placehold.co/400x300?text=Missing+SVG+${fileName}'">
-            </div>
-            <div class="card-info">
-                <h3>FReD Section ${sectionNum}</h3>
-                <div class="actions">
-                    <a href="${fileName}" target="_blank">View Full SVG</a>
-                    <a href="${dbmlName}" download>Download DBML</a>
-                </div>
-            </div>
-        `;
-        gallery.appendChild(card);
-    }
-</script>
-
-</body>
-</html>
